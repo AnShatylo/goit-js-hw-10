@@ -4,12 +4,9 @@
   | default @import url()
   |============================
 */
-@import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -23,3 +20,173 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+/* Reset styles */
+
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* HEADER */
+
+.header {
+  padding: 20px 0;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+}
+
+.nav-link {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #747bff;
+}
+
+/* TIMER */
+
+button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: fit-content;
+  height: 40px;
+  background: #4e75ff;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+  border: none;
+  transition: background 250ms linear;
+}
+
+button:hover,
+button:focus {
+  background: #6c8cff;
+}
+
+input {
+  height: 40px;
+  max-width: 272px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  width: 360px;
+}
+input:hover {
+  border: 1px solid #000;
+}
+
+input:focus-visible {
+  outline: 1px solid #4e75ff;
+  border: none;
+}
+
+button[disabled] {
+  background: #cfcfcf;
+  color: #989898;
+  cursor: not-allowed;
+}
+
+.timer {
+  margin-top: 32px;
+  display: flex;
+  gap: 24px;
+  max-width: 350px;
+}
+
+.timer .field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #2e2f42;
+}
+
+.field .value {
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.fontAwesomeOpacity {
+  opacity: 1 !important;
+}
+
+.iziToast > .iziToast-body .iziToast-icon {
+  top: 30%;
+}
+
+/* PROMISE GENERETOR */
+
+.form,
+.form input,
+.form fieldset {
+  max-width: 360px;
+}
+.form button {
+  width: 360px;
+}
+
+.form fieldset {
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 24px;
+}
+
+fieldset input[type='radio'] {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* END */
