@@ -5,40 +5,30 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form');
   const delay = document.querySelector('[name="delay"]');
   const state = document.querySelectorAll('[name="state"]');
-  const formData = {
-    delay: '',
-    state: '',
-  };
-
-  delay.addEventListener('input', function () {
-    formData.delay = delay.value;
-  });
-
-  state.forEach(input => {
-    input.addEventListener('change', function () {
-      formData.state = input.value;
-    });
-  });
 
   form.addEventListener('submit', formSubmit);
 
   function formSubmit(e) {
     e.preventDefault();
 
+    const formData = {
+      delay: delay.value,
+      state: Array.from(state).find(input => input.checked)?.value || '',
+    };
+
     if (formData.delay === '' || formData.state === '') {
       alert('Please fill all fields');
     } else {
       form.reset();
 
-      const promise = createPromise();
+      const promise = createPromise(formData);
 
       promise
         .then(message => {
           setTimeout(() => {
             iziToast.success({
               backgroundColor: '#59A10D',
-              title: 'Error',
-              message: `✅ Fulfilled promise in ${formData.delay}ms`,
+              message: `Fulfilled promise in ${formData.delay}ms`,
               titleColor: '#fff',
               messageColor: '#fff',
               progressBarColor: ' #b5ea7',
@@ -49,8 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
           setTimeout(() => {
             iziToast.error({
               backgroundColor: '#EF4040',
-              title: 'Error',
-              message: `❌ Rejected promise in ${formData.delay}ms`,
+              message: `Rejected promise in ${formData.delay}ms`,
               titleColor: '#fff',
               messageColor: '#fff',
               progressBarColor: '#B51B1B',
@@ -60,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function createPromise() {
+  function createPromise(formData) {
     return new Promise((res, rej) => {
       const state = formData.state;
       if (state === 'fulfilled') {
