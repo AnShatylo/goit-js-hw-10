@@ -21,42 +21,37 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       form.reset();
 
-      const promise = createPromise(formData);
-
-      promise
-        .then(message => {
-          setTimeout(() => {
-            iziToast.success({
-              backgroundColor: '#59A10D',
-              message: `Fulfilled promise in ${formData.delay}ms`,
-              titleColor: '#fff',
-              messageColor: '#fff',
-              progressBarColor: ' #b5ea7',
-            });
-          }, formData.delay);
+      createPromise(formData)
+        .then(fulfilled => {
+          iziToast.success({
+            backgroundColor: '#59A10D',
+            message: `Fulfilled promise in ${formData.delay}ms`,
+            titleColor: '#fff',
+            messageColor: '#fff',
+            progressBarColor: ' #b5ea7',
+          });
         })
-        .catch(error => {
-          setTimeout(() => {
-            iziToast.error({
-              backgroundColor: '#EF4040',
-              message: `Rejected promise in ${formData.delay}ms`,
-              titleColor: '#fff',
-              messageColor: '#fff',
-              progressBarColor: '#B51B1B',
-            });
-          }, formData.delay);
+        .catch(rejected => {
+          iziToast.error({
+            backgroundColor: '#EF4040',
+            message: `Rejected promise in ${formData.delay}ms`,
+            titleColor: '#fff',
+            messageColor: '#fff',
+            progressBarColor: '#B51B1B',
+          });
         });
     }
   }
 
   function createPromise(formData) {
     return new Promise((res, rej) => {
-      const state = formData.state;
-      if (state === 'fulfilled') {
-        res('fulfilled');
-      } else {
-        rej('rejected');
-      }
+      setTimeout(() => {
+        if (formData.state === 'fulfilled') {
+          res('fulfilled');
+        } else {
+          rej('rejected');
+        }
+      }, formData.delay);
     });
   }
 });
